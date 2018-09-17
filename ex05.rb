@@ -26,4 +26,16 @@ cm = 10
 
 puts "#{inches} inches converted to centimetres is #{inches * cm_in_inch} cm"
 
-puts "#{cm} cm converted to inches is #{cm / cm_in_inch} inches"
+puts "#{cm} cm converted to inches is #{(cm / cm_in_inch).round(2)} inches"
+
+#2. pounds to kg converter
+
+
+pounds_in_kg = 2.2
+
+pounds = 10
+kg = 10
+
+puts "#{pounds} pounds converted to kilograms is #{(kg / pounds_in_kg).round(2)} kg"
+
+puts "#{kg} kg converted to pounds is #{pounds * pounds_in_kg} pounds"
