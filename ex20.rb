@@ -43,4 +43,4 @@ print_a_line(current_line, current_file)
 
 #4. Seek goes to a specific position in the file. The specific position is indicated by the number entered as an argument
 
-#5. += adds what is on the right to variable on the left
+#5. += adds what is on the right to variable on the left.
