@@ -29,7 +29,7 @@ def bear_room
     print "> "
     choice = $stdin.gets.chomp
 
-    if choice == "take honey"
+    if choice.include? "honey"
       dead("The bear looks at you then slaps your face off")
     elsif choice == "taunt" && !bear_moved
       puts "The bear has moved from the door. You can go through it now"
@@ -82,3 +82,8 @@ def start
 end
 
 start
+
+
+#Study drills
+
+#5. Can use regular expression here to match digits. The previous way using include? didn't account for all possible digits
