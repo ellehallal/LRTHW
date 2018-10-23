@@ -17,9 +17,10 @@ class Engine
 
     while current_scene != last_scene
       next_scene_name = current_scene.enter()
-      current_scene = scene_map.next_scene(next_scene_name)
+      current_scene = @scene_map.next_scene(next_scene_name)
     end
 
+    # be sure to print out the last scene
     current_scene.enter()
   end
 end
@@ -31,6 +32,7 @@ class Death < Scene
     exit(1)
   end
 end
+
 
 class CentralCorridor < Scene
   def enter()
@@ -67,11 +69,12 @@ class LaserWeaponArmory < Scene
     """
     guess = $stdin.gets.chomp
 
-    if code == guess
+    if code == guess or guess == 'cheat'
       'the_bridge'
     else
       puts "That's the incorrect code"
       'death'
+    end
   end
 end
 
@@ -89,17 +92,19 @@ class TheBridge < Scene
     """
     choice = $stdin.gets.chomp
 
-    if choice == 3
+    if choice == '3' or choice == 'cheat'
       'escape_pod'
     else
       'death'
+    end
+
   end
 end
 
 class EscapePod < Scene
 
   def enter()
-    pod = rand(1..2)
+    pod = rand(1..2).to_s
     puts """You've reached the Escape Pod, where you're faced with two Pods
     One of the pods will explode, the other will allow you to escape.
     Which pod do you choose? 1 or 2?
@@ -108,7 +113,7 @@ class EscapePod < Scene
 
     choice = $stdin.gets.chomp
 
-    if choice == pod
+    if choice == pod or choice == 'cheat'
       puts "Congratulations, you've selected the legit escape pod. You win!"
       exit(1)
     else
@@ -126,8 +131,7 @@ class Map
     'laser_weapon_armory' => LaserWeaponArmory.new(),
     'the_bridge' => TheBridge.new(),
     'escape_pod' => EscapePod.new(),
-    'death' => Death.new(),
-    'finished' => Finished.new(),
+    'death' => Death.new()
   }
 
   def initialize (start_scene)
@@ -147,3 +151,11 @@ end
 a_map = Map.new('central_corridor')
 a_game = Engine.new(a_map)
 a_game.play()
+
+
+
+#Study drills
+#3. The room names are keys in the @@scenes hash, and a new instance of the
+#specific scene class is the value. when the key is accessed, the value is returned
+
+#4.Add cheat codes - done
