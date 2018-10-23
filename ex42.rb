@@ -85,12 +85,15 @@ end
 
 
 #rover is-a instance of class Dog
+#rover is an object
 rover = Dog.new("Rover")
 
 #satan is-a instance of class Cat
+#satan is an object
 satan = Cat.new("Satan")
 
 #mary is-a instance of class Person
+#mary is an object
 mary = Person.new("Mary")
 
 #mary has a pet which is satan
@@ -135,4 +138,4 @@ mary.cities["London"] = "United Kingdom"
 mary.hello
 
 
-#5. Yes, where a class inherits from a number of different parent classes. This can get messy 
+#5. Yes, where a class inherits from a number of different parent classes. This can get messy
