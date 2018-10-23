@@ -53,6 +53,8 @@ def right_room
   1. Dance around the monster
   2. Shout at the monster
   3. Sneak around the monster to the door behind it
+  (pick a number)
+  >
   """
 
   choice = $stdin.gets.chomp.to_i
@@ -90,16 +92,22 @@ def start
   """
   choice = $stdin.gets.chomp
 
-  if choice == 'left'
-    left_room
-  elsif choice == 'right'
-    right_room
-  elsif choice == 'middle'
-    middle_room
-  else
-    puts "You become dizzy and die in the room."
-    dead("Game over")
+  case choice
+    when "left" then left_room
+    when "right" then right_room
+    when "middle" then middle_room
   end
+
+  # if choice == 'left'
+  #   left_room
+  # elsif choice == 'right'
+  #   right_room
+  # elsif choice == 'middle'
+  #   middle_room
+  # else
+  #   puts "You become dizzy and die in the room."
+  #   dead("Game over")
+  # end
 
 end
 
