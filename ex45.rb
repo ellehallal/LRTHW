@@ -5,6 +5,25 @@ class Scene
   end
 end
 
+class Engine
+
+  def initialize(scene_map)
+    @scene_map = scene_map
+  end
+
+  def play()
+    current_scene = @scene_map.opening_scene()
+    last_scene = @scene_map.next_scene('prize_room')
+
+    while current_scene != last_scene
+      next_scene_name = current_scene.enter()
+      current_scene = @scene_map.next_scene(next_scene_name)
+    end
+
+    current_scene.enter()
+  end
+end
+
 class Cloud < Scene
   def enter
     puts """
@@ -25,19 +44,19 @@ class Cloud < Scene
       The rain cloud giggles and moves to the side to reveal
       a door...
       """
-      Evil_Unicorn.new()
+      'evil_unicorn'
     when "2"
       puts "The rain cloud happens to be very hungry today, so you're it's lunch"
-      Death.new()
+      'death'
     when "3"
       puts "The rain cloud really isn't in the mood to play with you today"
-      Death.new()
+      'death'
     end
 
   end
 end
 
-class Evil_Unicorn < Scene
+class EvilUnicorn < Scene
   def enter
     puts """The door opens to reveal...
     AN EVIL UNICORN!
@@ -53,16 +72,16 @@ class Evil_Unicorn < Scene
       The evil unicorn gracefully stands to the side to allow you to enter
       the next room. However, the unicorn warns you not to be greedy...
       """
-      Cake_Room.enter
+      'cake_room'
     else
       puts "That's incorrect. Back to the cloud you go..."
-      Cloud.enter
+      'cloud'
     end
 
   end
 end
 
-class Cake_Room < Scene
+class CakeRoom < Scene
   def enter
     puts """
     You open the door to reveal a room full of the most glorious cakes ever;
@@ -79,10 +98,10 @@ class Cake_Room < Scene
     case @choice
     when "1"
       puts "Didn't the evil unicorn tell you not to be greedy?"
-      Death.enter
+      'death'
     when "2"
       puts "How modest of you. A hatch opens on your right to reveal a dark room..."
-      Phoenix.enter
+      'phoenix'
     end
 
   end
@@ -105,16 +124,16 @@ class Phoenix < Scene
       puts """
       The Phoenix flies away, revealing a giant blue door...
       """
-      Tea_Room.new()
+      'tea_room'
     else
       puts "That's incorrect. Back to the cake room you go..."
-      Cake_Room.new()
+      'cake_room'
     end
 
   end
 end
 
-class Tea_Room < Scene
+class TeaRoom < Scene
   def enter
     puts """
     Welcome to the Tea Room. Here your tea making abilities will be tested
@@ -151,13 +170,13 @@ class Tea_Room < Scene
       """
     else
       puts "The tea master isn't impressed. He turns into a monster and eats you"
-      Death.new
+      'death'
     end
 
   end
 end
 
-class Prize_Room < Scene
+class PrizeRoom < Scene
   def enter
     puts """
     Well done, you win! Pick a letter: a, b or c?
@@ -189,5 +208,32 @@ class Death < Scene
   end
 end
 
-game = Cloud.new
-game.enter
+class Map
+
+  @@scenes = {
+    'cloud' => Cloud.new(),
+    'evil_unicorn' => EvilUnicorn.new(),
+    'cake_room' => CakeRoom.new(),
+    'phoenix' => Phoenix.new(),
+    'tea_room' => TeaRoom.new(),
+    'prize_room' => PrizeRoom.new(),
+    'death' => Death.new()
+  }
+
+  def initialize (start_scene)
+    @start_scene = start_scene
+  end
+
+  def next_scene(scene_name)
+    val = @@scenes[scene_name]
+    return val
+  end
+
+  def opening_scene()
+    return next_scene(@start_scene)
+  end
+end
+
+my_map = Map.new('cloud')
+game = Engine.new(my_map)
+game.play()
