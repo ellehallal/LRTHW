@@ -39,17 +39,30 @@ class Evil_Unicorn < Scene
   def enter
     puts """The door opens to reveal...
     AN EVIL UNICORN!
-    The unicorn asks you to guess a number between 1-5 in order to get ito the
+    The unicorn asks you to guess a number between 1-5 in order to get into the
     next room. Pick a number:
     >
     """
+    number = rand(1..5)
+    choice = $stdin.gets.chomp
+
+    if number == choice
+      puts """
+      The evil unicorn gracefully stands to the side to allow you to enter
+      the next room. However, the unicorn warns you not to be greedy...
+      """
+      Cake_Room.enter
+    else
+      puts "That's incorrect. Back to the cloud you go..."
+      Cloud.enter
+    end
 
   end
 end
 
 class Cake_Room < Scene
   def enter
-    #eat cake or not
+    
   end
 end
 
