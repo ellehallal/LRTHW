@@ -67,7 +67,7 @@ class Cake_Room < Scene
     You open the door to reveal a room full of the most glorious cakes ever;
     red velvet, victoria sponge, chocolate caramel and the list goes on. What do you do?
     1. Eat all of the cakes
-    2. Take a small cupcake for later
+    2. Take a cupcake for later to have with a cup of tea
     3. Eat nothing and wait
     Pick a number:
     >
@@ -115,13 +115,53 @@ end
 
 class Tea_Room < Scene
   def enter
-    #make tea up to standard
+    puts """
+    Welcome to the Tea Room. Here your tea making abilities will be tested
+    and judged by the tea master. Let's start:
+    What tea would you like to make?
+    1. Mint
+    2. Green
+    3. Ginger
+    >
+    """
+    selection = []
+    standard = ["3", "3", "cupcake"]
+    choice = $stdin.gets.chomp
+    selection << choice
+
+    puts """
+    Would you like to add sugar, honey or not?
+    1. Sugar
+    2. Honey
+    3. No thanks
+    >
+    """
+    choice = $stdin.gets.chomp
+    selection << choice
+
+    puts "Do you have anything to add to impress the tea master?"
+    choice = $stdin.gets.chomp
+    selection << choice
+
+    if selection == standard
+      puts """
+      The tea master is very impressed by your tea and the cupcake. He guides
+      you to the next room...
+      """
+    else
+      puts "The tea master isn't impressed. He turns into a monster and eats you"
+      Death.new
+    end
+
   end
 end
 
 class Prize_Room < Scene
   def enter
-    #choose a prize
+    puts """
+    Well done, you win!
+
+    """
 
   end
 end
