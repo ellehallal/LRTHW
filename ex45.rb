@@ -12,6 +12,7 @@ class Cloud < Scene
     1. Tickle the rain cloud
     2. Jump into the rain cloud
     3. Tackle the rain cloud
+    Pick a number:
     >
     """
 
@@ -62,7 +63,27 @@ end
 
 class Cake_Room < Scene
   def enter
-    
+    puts """
+    You open the door to reveal a room full of the most glorious cakes ever;
+    red velvet, victoria sponge, chocolate caramel and the list goes on. What do you do?
+    1. Eat all of the cakes
+    2. Take a small cupcake for later
+    3. Eat nothing and wait
+    Pick a number:
+    >
+    """
+
+    choice == $stdin.gets.chomp
+
+    case choice
+    when "1"
+      puts "Didn't the evil unicorn tell you not to be greedy?"
+      Death.enter
+    when "2"
+      puts "How modest of you. A hatch opens on your right to reveal a dark room..."
+      Phoenix.enter
+    end
+
   end
 end
 
