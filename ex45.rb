@@ -1,6 +1,7 @@
 class Scene
   def enter
     puts "Default scene class"
+    exit(1)
   end
 end
 
@@ -16,9 +17,9 @@ class Cloud < Scene
     >
     """
 
-    choice = $stdin.gets.chomp
+    @choice = $stdin.gets.chomp
 
-    case choice
+    case @choice
     when "1"
       puts """
       The rain cloud giggles and moves to the side to reveal
@@ -44,10 +45,10 @@ class Evil_Unicorn < Scene
     next room. Pick a number:
     >
     """
-    number = rand(1..5)
-    choice = $stdin.gets.chomp
+    @number = rand(1..5)
+    @choice = $stdin.gets.chomp
 
-    if number == choice
+    if @number == @choice
       puts """
       The evil unicorn gracefully stands to the side to allow you to enter
       the next room. However, the unicorn warns you not to be greedy...
@@ -73,9 +74,9 @@ class Cake_Room < Scene
     >
     """
 
-    choice == $stdin.gets.chomp
+    @choice == $stdin.gets.chomp
 
-    case choice
+    case @choice
     when "1"
       puts "Didn't the evil unicorn tell you not to be greedy?"
       Death.enter
@@ -96,11 +97,11 @@ class Phoenix < Scene
     The Phoenix asks you to guess the three digit combination to unlock the next door:
     >
     """
-    combinations = ["123", "456", "789"]
-    phoenix_choice = combinations[rand(0..2)]
-    choice = $stdin.gets.chomp
+    @combinations = ["123", "456", "789"]
+    @phoenix_choice = combinations[rand(0..2)]
+    @choice = $stdin.gets.chomp
 
-    if choice == phoenix_choice
+    if @choice == @phoenix_choice
       puts """
       The Phoenix flies away, revealing a giant blue door...
       """
@@ -124,10 +125,10 @@ class Tea_Room < Scene
     3. Ginger
     >
     """
-    selection = []
-    standard = ["3", "3", "cupcake"]
-    choice = $stdin.gets.chomp
-    selection << choice
+    @selection = []
+    @standard = ["3", "3", "cupcake"]
+    @choice = $stdin.gets.chomp
+    @selection << @choice
 
     puts """
     Would you like to add sugar, honey or not?
@@ -136,14 +137,14 @@ class Tea_Room < Scene
     3. No thanks
     >
     """
-    choice = $stdin.gets.chomp
-    selection << choice
+    @choice = $stdin.gets.chomp
+    @selection << @choice
 
     puts "Do you have anything to add to impress the tea master?"
-    choice = $stdin.gets.chomp
-    selection << choice
+    @choice = $stdin.gets.chomp
+    @selection << @choice
 
-    if selection == standard
+    if @selection == @standard
       puts """
       The tea master is very impressed by your tea and the cupcake. He guides
       you to the next room...
@@ -162,14 +163,14 @@ class Prize_Room < Scene
     Well done, you win! Pick a letter: a, b or c?
     >
     """
-    prizes = {
+    @prizes = {
       "a" => "£1,000,000",
       "b" => "free holidays for your lifetime",
       "c" => "unlimited food"
     }
-    choice = $stdin.gets.chomp
+    @choice = $stdin.gets.chomp
 
-    puts "You've selected #{prizes[choice]}. Enjoy!"
+    puts "You've selected #{@prizes[@choice]}. Enjoy!"
     exit(1)
   end
 end
