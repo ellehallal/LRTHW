@@ -1,0 +1,4 @@
+#!/usr/bin/env ruby
+
+require 'hellohi'
+puts Hellohi.hi

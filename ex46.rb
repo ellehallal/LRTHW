@@ -11,3 +11,11 @@
 # Rakefile - contains rake program which automates tests
 # data - stores application data
 # ext - contains application extensions
+
+#When trying to run gem build bonjour.gemspec, the following error pops up:
+# WARNING:  See http://guides.rubygems.org/specification-reference/ for help
+# ERROR:  While executing gem ... (Gem::InvalidSpecificationException)
+#     ["bin/bin/bonjour"]
+
+#Followed this guide instead to create a gem:
+#https://guides.rubygems.org/make-your-own-gem/
