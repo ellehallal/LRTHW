@@ -24,13 +24,13 @@ class Cloud < Scene
       The rain cloud giggles and moves to the side to reveal
       a door...
       """
-      Evil_Unicorn.enter()
+      Evil_Unicorn.new()
     when "2"
       puts "The rain cloud happens to be very hungry today, so you're it's lunch"
-      Death.enter
+      Death.new()
     when "3"
       puts "The rain cloud really isn't in the mood to play with you today"
-      Death.enter
+      Death.new()
     end
 
   end
@@ -89,7 +89,26 @@ end
 
 class Phoenix < Scene
   def enter
-    #defeat phoenix
+    puts """
+    Crawling into the hatch, you can see the room is illuminated.
+    Edging closer, it starts to become apparent why. There's a giant
+    phoenix in the left corner of the room.
+    The Phoenix asks you to guess the three digit combination to unlock the next door:
+    >
+    """
+    combinations = ["123", "456", "789"]
+    phoenix_choice = combinations[rand(0..2)]
+    choice = $stdin.gets.chomp
+
+    if choice == phoenix_choice
+      puts """
+      The Phoenix flies away, revealing a giant blue door...
+      """
+      Tea_Room.new()
+    else
+      puts "That's incorrect. Back to the cake room you go..."
+      Cake_Room.new()
+    end
 
   end
 end
@@ -105,16 +124,21 @@ class Prize_Room < Scene
     #choose a prize
 
   end
-
-  class Death < Scene
-    def enter
-      @death = [
-        ["Wow, you've failed already? You should be ashamed of yourself"],
-        ["You're dead. What a poor attempt"],
-        ["Game over"]
-      ]
-
-      puts @death[rand(1..3))]
-      exit(1)
-    end
 end
+
+
+class Death < Scene
+  def enter
+    @death = [
+      "Wow, you've failed already? You should be ashamed of yourself",
+      "You're dead. What a poor attempt",
+      "Game over"
+    ]
+
+    puts @death[rand(0..2)]
+    exit(1)
+  end
+end
+
+game = Cloud.new
+game.enter
