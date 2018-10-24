@@ -121,8 +121,10 @@ end
 
 class Phoenix < Scene
   def enter
-    combinations = [123, 456, 789]
-    phoenix_choice = combinations[rand(0..2)].to_s
+    require_relative "ex45combinations"
+    # combinations = [123, 456, 789]
+    phoenix_choice = Combinations::COMBINATIONS[rand(0..2)].to_s
+    puts phoenix_choice
 
     puts """
     Crawling into the hatch, you can see the room is illuminated.
