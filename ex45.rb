@@ -208,9 +208,6 @@ class PrizeRoom < Scene
   end
 end
 
-
-
-
 class Map
 
   @@scenes = {
