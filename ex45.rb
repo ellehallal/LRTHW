@@ -26,13 +26,13 @@ end
 
 class Death < Scene
   def enter
-    death = [
-      "Wow, you've failed already? You should be ashamed of yourself",
-      "You're dead. What a poor attempt",
-      "Game over"
-    ]
-
-    puts death[rand(0..2)]
+    require_relative "ex45death"
+    # death = [
+    #   "Wow, you've failed already? You should be ashamed of yourself",
+    #   "You're dead. What a poor attempt",
+    #   "Game over"
+    # ]
+    puts DeathArray::DEATH_ARRAY[rand(0..2)]
     exit(1)
   end
 end
@@ -123,7 +123,7 @@ class Phoenix < Scene
   def enter
     combinations = [123, 456, 789]
     phoenix_choice = combinations[rand(0..2)].to_s
-    puts phoenix_choice
+
     puts """
     Crawling into the hatch, you can see the room is illuminated.
     Edging closer, it starts to become apparent why. There's a giant
