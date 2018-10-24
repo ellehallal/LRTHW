@@ -159,10 +159,18 @@ end
 class Prize_Room < Scene
   def enter
     puts """
-    Well done, you win!
-
+    Well done, you win! Pick a letter: a, b or c?
+    >
     """
+    prizes = {
+      "a" => "£1,000,000",
+      "b" => "free holidays for your lifetime",
+      "c" => "unlimited food"
+    }
+    choice = $stdin.gets.chomp
 
+    puts "You've selected #{prizes[choice]}. Enjoy!"
+    exit(1)
   end
 end
 
